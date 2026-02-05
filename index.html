@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fist Bump Karim</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .game-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .main-game {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .stats {
+            text-align: center;
+            width: 100%;
+        }
+
+        .coin-count {
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .coins-per-click {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .coins-per-second {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        #karim {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            cursor: pointer;
+            transition: transform 0.1s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            user-select: none;
+        }
+
+        #karim:hover {
+            transform: scale(1.05);
+        }
+
+        #karim:active {
+            transform: scale(0.95);
+        }
+
+        .click-effect {
+            position: absolute;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffd700;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+
+        .shop {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .shop h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .shop-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .shop-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffd700;
+        }
+
+        .shop-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .shop-item.disabled:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: transparent;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .item-count {
+            background: rgba(255, 215, 0, 0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .item-description {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-cost {
+            font-size: 16px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .item-effect {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="main-game">
+            <div class="stats">
+                <div class="coin-count">💰 <span id="coins">0</span></div>
+                <div class="coins-per-click">+<span id="coinsPerClick">1</span> per fist bump</div>
+                <div class="coins-per-second"><span id="coinsPerSecond">0</span> coins/second</div>
+            </div>
+            <div id="karim">
+                <img src="karimfistbumper.png" alt="Karim fist bump">
+            </div>
+        </div>
+
+        <div class="shop">
+            <h2>🛒 Upgrades</h2>
+            <div id="shopItems"></div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let coins = 0;
+        let coinsPerClick = 1;
+        let coinsPerSecond = 0;
+
+        // Shop items data
+        const shopItems = [
+            {
+                id: 'autoClicker1',
+                name: 'Fist Buddy',
+                description: 'A friend who fist bumps Karim for you',
+                baseCost: 10,
+                effect: 0.1,
+                effectType: 'cps',
+                count: 0,
+                emoji: '🤝'
+            },
+            {
+                id: 'clickMultiplier1',
+                name: 'Power Glove',
+                description: 'More powerful fist bumps',
+                baseCost: 25,
+                effect: 1,
+                effectType: 'cpc',
+                count: 0,
+                emoji: '🥊'
+            },
+            {
+                id: 'autoClicker2',
+                name: 'Fist Bump Squad',
+                description: 'A whole crew of fist bumpers',
+                baseCost: 100,
+                effect: 1,
+                effectType: 'cps',
+                count: 0,
+                emoji: '👥'
+            },
+            {
+                id: 'clickMultiplier2',
+                name: 'Diamond Knuckles',
+                description: 'Extra shiny, extra powerful',
+                baseCost: 250,
+                effect: 5,
+                effectType: 'cpc',
+                count: 0,
+                emoji: '💎'
+            },
+            {
+                id: 'autoClicker3',
+                name: 'Fist Bump Factory',
+                description: 'Mass production of fist bumps',
+                baseCost: 500,
+                effect: 5,
+                effectType: 'cps',
+                count: 0,
+                emoji: '🏭'
+            },
+            {
+                id: 'clickMultiplier3',
+                name: 'Mega Fist',
+                description: 'Absolutely devastating fist bumps',
+                baseCost: 1000,
+                effect: 25,
+                effectType: 'cpc',
+                count: 0,
+                emoji: '💥'
+            },
+            {
+                id: 'autoClicker4',
+                name: 'Fist Bump Empire',
+                description: 'A global fist bumping operation',
+                baseCost: 2500,
+                effect: 25,
+                effectType: 'cps',
+                count: 0,
+                emoji: '🌍'
+            },
+            {
+                id: 'clickMultiplier4',
+                name: 'Cosmic Fist',
+                description: 'Harness the power of the universe',
+                baseCost: 5000,
+                effect: 100,
+                effectType: 'cpc',
+                count: 0,
+                emoji: '✨'
+            }
+        ];
+
+        // DOM elements
+        const karimElement = document.getElementById('karim');
+        const coinsDisplay = document.getElementById('coins');
+        const coinsPerClickDisplay = document.getElementById('coinsPerClick');
+        const coinsPerSecondDisplay = document.getElementById('coinsPerSecond');
+        const shopItemsContainer = document.getElementById('shopItems');
+
+        // Click Karim
+        karimElement.addEventListener('click', (e) => {
+            coins += coinsPerClick;
+            updateDisplay();
+
+            // Create floating text effect
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.textContent = `+${coinsPerClick}`;
+            effect.style.left = (e.clientX - karimElement.getBoundingClientRect().left) + 'px';
+            effect.style.top = (e.clientY - karimElement.getBoundingClientRect().top) + 'px';
+            karimElement.appendChild(effect);
+
+            setTimeout(() => effect.remove(), 1000);
+        });
+
+        // Calculate cost with scaling
+        function getItemCost(item) {
+            return Math.floor(item.baseCost * Math.pow(1.15, item.count));
+        }
+
+        // Buy item
+        function buyItem(item) {
+            const cost = getItemCost(item);
+            if (coins >= cost) {
+                coins -= cost;
+                item.count++;
+
+                if (item.effectType === 'cpc') {
+                    coinsPerClick += item.effect;
+                } else if (item.effectType === 'cps') {
+                    coinsPerSecond += item.effect;
+                }
+
+                updateDisplay();
+                renderShop();
+            }
+        }
+
+        // Render shop
+        function renderShop() {
+            shopItemsContainer.innerHTML = '';
+            shopItems.forEach(item => {
+                const cost = getItemCost(item);
+                const canAfford = coins >= cost;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = `shop-item ${!canAfford ? 'disabled' : ''}`;
+                itemDiv.innerHTML = `
+                    <div class="item-header">
+                        <span class="item-name">${item.emoji} ${item.name}</span>
+                        <span class="item-count">${item.count}</span>
+                    </div>
+                    <div class="item-description">${item.description}</div>
+                    <div class="item-footer">
+                        <span class="item-cost">💰 ${cost}</span>
+                        <span class="item-effect">
+                            ${item.effectType === 'cpc' ? `+${item.effect} per click` : `+${item.effect}/sec`}
+                        </span>
+                    </div>
+                `;
+                
+                if (canAfford) {
+                    itemDiv.addEventListener('click', () => buyItem(item));
+                }
+                
+                shopItemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Update display
+        function updateDisplay() {
+            coinsDisplay.textContent = Math.floor(coins);
+            coinsPerClickDisplay.textContent = coinsPerClick;
+            coinsPerSecondDisplay.textContent = coinsPerSecond.toFixed(1);
+        }
+
+        // Passive income
+        setInterval(() => {
+            if (coinsPerSecond > 0) {
+                coins += coinsPerSecond / 10;
+                updateDisplay();
+            }
+        }, 100);
+
+        // Update shop periodically
+        setInterval(() => {
+            renderShop();
+        }, 100);
+
+        // Initial render
+        renderShop();
+        updateDisplay();
+    </script>
+</body>
+</html>
