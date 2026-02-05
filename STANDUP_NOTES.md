@@ -20,5 +20,6 @@
 **What I did:** [Yesterday or since last standup]   
 **What I'm doing:** [Today's focus]   
 **Blocked?** [Yes/No — if yes, what?]   
-   
+
+##
 **Notes from Lead/Instructor:** [Any decisions made, blockers to resolve after standup]
