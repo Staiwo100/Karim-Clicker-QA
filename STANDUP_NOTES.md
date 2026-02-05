@@ -2,9 +2,9 @@
 ## Date: 2/5/2026   
    
 ## [Lucas]   
-**What I did:** [Yesterday or since last standup]   
-**What I'm doing:** [Today's focus]   
-**Blocked?** [Yes/No — if yes, what?]   
+**What I did:** I worked on the base code of the game and creating a template/foundation.
+**What I'm doing:** Still working on the base code
+**Blocked?** No 
    
 ## [Parth]   
 **What I did:** I looked at good pictures of karim to use   
