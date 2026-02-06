@@ -2,8 +2,8 @@
 ## Date: 2/5/2026   
    
 ## [Lucas]   
-**What I did:** I worked on the base code of the game and creating a template/foundation.
-**What I'm doing:** Still working on the base code
+**What I did:** I worked on the base code of the game and creating a template/foundation.   
+**What I'm doing:** Still working on the base code   
 **Blocked?** No 
    
 ## [Parth]   
@@ -19,6 +19,34 @@
 ## [Jack]   
 **What I did:** Made a plan for our game idea and how we will execute it 
 **What I'm doing:** Programming the fundamentals off the game   
+**Blocked?** No   
+
+##
+**Notes from Lead/Instructor:** N/A
+
+***
+
+# Day 3
+## Date: 2/6/2026   
+   
+## [Lucas]   
+**What I did:** Created the base code for the game as a starting off point for future code.   
+**What I'm doing:** Improved aesthetics and fixed bugs in powerups.   
+**Blocked?** No 
+   
+## [Parth]   
+**What I did:** Sourced images for gameplay and components of the website.   
+**What I'm doing:** Brainstormed new powerups and continued to source images for them.   
+**Blocked?** It's difficult to find new images, so other team members have been recruited to assist in the effort.   
+   
+## [Biruk]   
+**What I did:** Began the standup document and worked with team members to ensure project requirments were in order.   
+**What I'm doing:** Assisted other team members in brainstorming powerup ideas and noted them for future implementation.    
+**Blocked?** No   
+   
+## [Jack]   
+**What I did:** Assited in coding and implementing base code. 
+**What I'm doing:** Brainstormed powerups as well as new functionalities in order to improve gameplay.   
 **Blocked?** No   
 
 ##
