@@ -85,6 +85,13 @@
             transform: scale(1.05);
         }
 
+        #karim > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
         #karim:active {
             transform: scale(0.95);
         }
@@ -196,6 +203,25 @@
             opacity: 1;
         }
 
+        .buddy {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: orbit 6s linear infinite;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(180px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(180px) rotate(-360deg);
+            }
+}
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -244,33 +270,33 @@
         const shopItems = [
             {
                 id: 'autoClicker1',
-                name: 'Fist Buddy',
-                description: 'A friend who fist bumps Karim for you',
+                name: 'Nayan Patel',
+                description: 'He loves giving karim fist bumps',
                 baseCost: 10,
                 effect: 0.1,
                 effectType: 'cps',
                 count: 0,
-                emoji: '🤝'
+                imageSrc: './Nayan-Transparent.png'
             },
             {
-                id: 'clickMultiplier1',
-                name: 'Power Glove',
-                description: 'More powerful fist bumps',
+                id: 'airpods',
+                name: 'Air Pods',
+                description: 'J Cole makes Karim stronger',
                 baseCost: 25,
                 effect: 1,
                 effectType: 'cpc',
                 count: 0,
-                emoji: '🥊'
+                imageSrc: './airpods-transparent.png'
             },
             {
-                id: 'autoClicker2',
-                name: 'Fist Bump Squad',
-                description: 'A whole crew of fist bumpers',
+                id: 'beanie',
+                name: 'Beanie',
+                description: 'Snuggly beanie for a snuggly boy',
                 baseCost: 100,
                 effect: 1,
                 effectType: 'cps',
                 count: 0,
-                emoji: '👥'
+                imageSrc: './beanie.png'
             },
             {
                 id: 'clickMultiplier2',
@@ -366,8 +392,46 @@
                     coinsPerSecond += item.effect;
                 }
 
+                if (item.id === 'autoClicker1' && item.imageSrc) {
+                    addBuddy(item.imageSrc, item.count);
+                }
+
+                 if (item.id === 'airpods' || item.id === 'beanie') {
+                    updateKarimImage();
+                }
+
                 updateDisplay();
                 renderShop();
+            }
+        }
+
+        // Buddy orbit
+        function addBuddy(imageSrc, count) {
+            const buddy = document.createElement('img');
+            buddy.src = imageSrc;
+            buddy.className = 'buddy';
+
+            const delay = (count - 1) * 0.5
+            buddy.style.animationDelay = `-${delay}s`;
+
+            karimElement.appendChild(buddy);
+        }
+
+        // Update Karim's appearance based on owned items
+        function updateKarimImage() {
+            const hasAirpods = shopItems.find(item => item.id === 'airpods').count > 0;
+            const hasBeanie = shopItems.find(item => item.id === 'beanie').count > 0;
+    
+            const karimImg = karimElement.querySelector('img');
+    
+            if (hasAirpods && hasBeanie) {
+                karimImg.src = 'karim-airpods-beanie.png'; // Both accessories
+            } else if (hasAirpods) {
+                karimImg.src = 'karim-airpods.png'; // Just AirPods
+            } else if (hasBeanie) {
+                karimImg.src = 'karim-beanie.png'; // Just beanie
+            } else {
+                karimImg.src = 'karimfistbumper.png'; // Default
             }
         }
 
@@ -382,7 +446,7 @@
                 itemDiv.className = `shop-item ${!canAfford ? 'disabled' : ''}`;
                 itemDiv.innerHTML = `
                     <div class="item-header">
-                        <span class="item-name">${item.emoji} ${item.name}</span>
+                        <span class="item-name">${item.imageSrc ? `<img src="${item.imageSrc}" style="width: 50px; height: 50px; vertical-align: middle; border-radius: 4px; margin-right: 5px;">` : item.emoji} ${item.name}</span>
                         <span class="item-count">${item.count}</span>
                     </div>
                     <div class="item-description">${item.description}</div>
