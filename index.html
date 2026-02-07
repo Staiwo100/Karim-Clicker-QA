@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +86,7 @@
             transform: scale(1.05);
         }
 
-        #karim > img {
+        #karim>img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -111,10 +112,73 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
             100% {
                 opacity: 0;
                 transform: translateY(-100px);
             }
+        }
+
+        #snakeBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 12px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            background: #2ecc71;
+            color: black;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        #snakeBtn:hover {
+            transform: scale(1.05);
+        }
+
+        #snakeOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        #snakeContainer {
+            position: relative;
+            background: black;
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        #snakeGame {
+            border: 2px solid white;
+        }
+
+        #closeSnake {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+
+        .snake-hint {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         .shop {
@@ -169,7 +233,7 @@
         .item-name {
             font-size: 18px;
             font-weight: bold;
-            color:black;
+            color: black;
         }
 
         .item-count {
@@ -218,6 +282,7 @@
             from {
                 transform: rotate(0deg) translateX(180px) rotate(0deg) scale(0.25);
             }
+
             to {
                 transform: rotate(360deg) translateX(180px) rotate(-360deg) scale(0.25);
             }
@@ -247,6 +312,7 @@
             from {
                 transform: scale(0);
             }
+
             to {
                 transform: scale(1);
             }
@@ -290,16 +356,16 @@
         .meter-bar {
             width: 80px;
             height: 400px;
-            background: linear-gradient(to top, 
-                #ff4444 0%, 
-                #ff8844 40%, 
-                #44ff44 85%, 
-                #44ff44 100%);
+            background: linear-gradient(to top,
+                    #ff4444 0%,
+                    #ff8844 40%,
+                    #44ff44 85%,
+                    #44ff44 100%);
             border-radius: 40px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3),
-                        inset 0 0 20px rgba(0, 0, 0, 0.3);
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
             border: 3px solid rgba(255, 215, 0, 0.5);
         }
 
@@ -374,8 +440,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
         }
 
         .result-flash {
@@ -397,10 +470,12 @@
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(0.5);
             }
+
             50% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1.2);
             }
+
             100% {
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(1);
@@ -426,7 +501,20 @@
         }
     </style>
 </head>
+
 <body>
+
+    <button id="snakeBtn">🐍 Play Snake</button>
+
+    <div id="snakeOverlay">
+        <div id="snakeContainer">
+            <button id="closeSnake">✖</button>
+            <canvas id="snakeGame" width="400" height="400"></canvas>
+            <div class="snake-hint">Use arrow keys</div>
+        </div>
+    </div>
+
+
     <div class="game-container">
         <div class="main-game">
             <div class="stats">
@@ -594,6 +682,24 @@
             }
         }
 
+        // Snake minigame
+        const snakeBtn = document.getElementById('snakeBtn');
+            const snakeOverlay = document.getElementById('snakeOverlay');
+            const closeSnake = document.getElementById('closeSnake');
+
+            let snakeRunning = false;
+
+            snakeBtn.addEventListener('click', () => {
+                snakeOverlay.style.display = 'flex';
+                snakeRunning = true;
+            });
+
+            closeSnake.addEventListener('click', () => {
+                snakeOverlay.style.display = 'none';
+                snakeRunning = false;
+            });
+
+
         // Buddy orbit
         function addBuddy(imageSrc, count) {
             const buddy = document.createElement('img');
@@ -644,7 +750,7 @@
 
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
+
                 // Move from bottom (0%) to top (100%)
                 const position = progress * 100;
                 marker.style.bottom = position + '%';
@@ -687,7 +793,7 @@
 
             // Event listeners
             stopButton.addEventListener('click', handleStop);
-            
+
             const spaceHandler = (e) => {
                 if (e.code === 'Space') {
                     e.preventDefault();
@@ -727,12 +833,12 @@
             document.body.appendChild(display);
 
             let timeLeft = 15;
-            
+
             function updateDisplay() {
                 if (!display.parentElement) return;
                 const emoji = globalMultiplier > 1 ? '🔥' : '❄️';
                 display.textContent = `${emoji} ${globalMultiplier}x Coins — ${timeLeft}s left`;
-                
+
                 timeLeft--;
                 if (timeLeft < 0) {
                     globalMultiplier = 1;
@@ -742,7 +848,7 @@
                     multiplierTimeoutId = setTimeout(updateDisplay, 1000);
                 }
             }
-            
+
             updateDisplay();
         }
 
@@ -776,28 +882,25 @@
             }, 60000);
         }
 
-        // setInterval(() => {
-        //     spawnRandomPicture();
-        // }, 1000); // Spawn once every 1 minutes
-
         //THIS WILL DO RANDOM BETWEEN 30-60 seconds
-        function scheduleRandomPicture() {
-            const delay = Math.random() * (60000 - 30000) + 30000; // 30–60 seconds
-            setTimeout(() => {
-                spawnRandomPicture();
-                scheduleRandomPicture(); // keep it going
-            }, delay);
-        }
+            function scheduleRandomPicture() {
+                const delay = Math.random() * (60000 - 30000) + 30000; // 30–60 seconds
+                setTimeout(() => {
+                    spawnRandomPicture();
+                    scheduleRandomPicture(); // keep it going
+                }, delay);
+            }
 
-        scheduleRandomPicture();
+            scheduleRandomPicture();
+
 
         // Update Karim's appearance based on owned items
         function updateKarimImage() {
             const hasAirpods = shopItems.find(item => item.id === 'airpods').count > 0;
             const hasBeanie = shopItems.find(item => item.id === 'beanie').count > 0;
-    
+
             const karimImg = karimElement.querySelector('img');
-    
+
             if (hasAirpods && hasBeanie) {
                 karimImg.src = './karim-beanie-airpods.png'; // Both accessories
             } else if (hasAirpods) {
@@ -815,7 +918,7 @@
             shopItems.forEach(item => {
                 const cost = getItemCost(item);
                 const canAfford = coins >= cost;
-                
+
                 const itemDiv = document.createElement('div');
                 itemDiv.className = `shop-item ${!canAfford ? 'disabled' : ''}`;
                 itemDiv.innerHTML = `
@@ -831,11 +934,11 @@
                         </span>
                     </div>
                 `;
-                
+
                 if (canAfford) {
                     itemDiv.addEventListener('click', () => buyItem(item));
                 }
-                
+
                 shopItemsContainer.appendChild(itemDiv);
             });
         }
@@ -865,9 +968,103 @@
         // Initial render
         renderShop();
         updateDisplay();
+
+        // Snake minigame JS
+        const canvas = document.getElementById('snakeGame');
+            const context = canvas.getContext('2d');
+
+            const grid = 16;
+            let count = 0;
+
+            const snake = {
+                x: 160,
+                y: 160,
+                dx: grid,
+                dy: 0,
+                cells: [],
+                maxCells: 4
+            };
+
+            const apple = {
+                x: 320,
+                y: 320
+            };
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            function snakeLoop() {
+                requestAnimationFrame(snakeLoop);
+
+                if (!snakeRunning) return;
+
+                if (++count < 4) return;
+                count = 0;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                snake.x += snake.dx;
+                snake.y += snake.dy;
+
+                if (snake.x < 0) snake.x = canvas.width - grid;
+                if (snake.x >= canvas.width) snake.x = 0;
+                if (snake.y < 0) snake.y = canvas.height - grid;
+                if (snake.y >= canvas.height) snake.y = 0;
+
+                snake.cells.unshift({ x: snake.x, y: snake.y });
+                if (snake.cells.length > snake.maxCells) {
+                    snake.cells.pop();
+                }
+
+                context.fillStyle = 'red';
+                context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+
+                context.fillStyle = 'lime';
+                snake.cells.forEach((cell, index) => {
+                    context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+
+                    if (cell.x === apple.x && cell.y === apple.y) {
+                        snake.maxCells++;
+
+                        // 🍎 reward coins
+                        coins += 25;
+                        updateDisplay();
+
+                        apple.x = getRandomInt(0, 25) * grid;
+                        apple.y = getRandomInt(0, 25) * grid;
+                    }
+
+                    for (let i = index + 1; i < snake.cells.length; i++) {
+                        if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+                            snake.x = 160;
+                            snake.y = 160;
+                            snake.cells = [];
+                            snake.maxCells = 4;
+                            snake.dx = grid;
+                            snake.dy = 0;
+                        }
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', e => {
+                if (!snakeRunning) return;
+
+                if (e.key === 'ArrowLeft' && snake.dx === 0) {
+                    snake.dx = -grid; snake.dy = 0;
+                } else if (e.key === 'ArrowUp' && snake.dy === 0) {
+                    snake.dy = -grid; snake.dx = 0;
+                } else if (e.key === 'ArrowRight' && snake.dx === 0) {
+                    snake.dx = grid; snake.dy = 0;
+                } else if (e.key === 'ArrowDown' && snake.dy === 0) {
+                    snake.dy = grid; snake.dx = 0;
+                }
+            });
+
+            requestAnimationFrame(snakeLoop);
+
     </script>
 </body>
+
 </html>
-
-
-
