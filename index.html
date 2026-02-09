@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fist Bump Karim</title>
     <style>
+        /* Reset default browser styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Main body styling with background image */
         body {
             font-family: 'Arial', sans-serif;
             /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
@@ -23,6 +25,7 @@
             color: white;
         }
 
+        /* Main container holding both game area and shop */
         .game-container {
             display: flex;
             gap: 20px;
@@ -31,6 +34,7 @@
             width: 100%;
         }
 
+        /* Left section containing stats and clickable Karim */
         .main-game {
             flex: 2;
             background: rgba(50, 76, 116, 0.6);
@@ -43,11 +47,13 @@
             gap: 30px;
         }
 
+        /* Stats section styling */
         .stats {
             text-align: center;
             width: 100%;
         }
 
+        /* Coin count display */
         .coin-count {
             font-size: 48px;
             font-weight: bold;
@@ -55,17 +61,20 @@
             margin-bottom: 10px;
         }
 
+        /* Coins per click display */
         .coins-per-click {
             font-size: 20px;
             opacity: 0.9;
         }
 
+        /* Coins per second display */
         .coins-per-second {
             font-size: 18px;
             opacity: 0.8;
             margin-top: 5px;
         }
 
+        /* Main clickable Karim circle */
         #karim {
             width: 300px;
             height: 300px;
@@ -82,10 +91,12 @@
             user-select: none;
         }
 
+        /* Hover effect for Karim */
         #karim:hover {
             transform: scale(1.05);
         }
 
+        /* Karim's image styling */
         #karim>img {
             width: 100%;
             height: 100%;
@@ -93,10 +104,12 @@
             border-radius: 50%;
         }
 
+        /* Click effect for Karim */
         #karim:active {
             transform: scale(0.95);
         }
 
+        /* Floating text effect when clicking Karim */
         .click-effect {
             position: absolute;
             font-size: 30px;
@@ -107,6 +120,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
+        /* Animation for floating coin text */
         @keyframes floatUp {
             0% {
                 opacity: 1;
@@ -119,6 +133,7 @@
             }
         }
 
+        /* Snake game button in bottom left corner */
         #snakeBtn {
             position: fixed;
             bottom: 20px;
@@ -135,10 +150,12 @@
             z-index: 1000;
         }
 
+        /* Hover effect for snake button */
         #snakeBtn:hover {
             transform: scale(1.05);
         }
 
+        /* Full-screen overlay for snake game */
         #snakeOverlay {
             position: fixed;
             inset: 0;
@@ -149,6 +166,7 @@
             z-index: 2000;
         }
 
+        /* Container for snake game canvas */
         #snakeContainer {
             position: relative;
             background: black;
@@ -156,10 +174,12 @@
             border-radius: 16px;
         }
 
+        /* Snake game canvas */
         #snakeGame {
             border: 2px solid white;
         }
 
+        /* Close button for snake game */
         #closeSnake {
             position: absolute;
             top: -12px;
@@ -174,6 +194,7 @@
             font-weight: bold;
         }
 
+        /* Hint text below snake game */
         .snake-hint {
             text-align: center;
             margin-top: 10px;
@@ -181,6 +202,7 @@
             opacity: 0.8;
         }
 
+        /* Right section containing shop items */
         .shop {
             flex: 1;
             background: rgba(93, 136, 185, 0.6);
@@ -191,12 +213,14 @@
             overflow-y: auto;
         }
 
+        /* Shop header */
         .shop h2 {
             text-align: center;
             margin-bottom: 20px;
             font-size: 28px;
         }
 
+        /* Individual shop item card */
         .shop-item {
             background: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
@@ -208,21 +232,25 @@
             border: 2px solid;
         }
 
+        /* Hover effect for shop items */
         .shop-item:hover {
             background: rgba(255, 255, 255, 0.25);
             border-color: #ffd700;
         }
 
+        /* Disabled state for unaffordable items */
         .shop-item.disabled {
             opacity: 1;
             cursor: not-allowed;
         }
 
+        /* Disabled hover state */
         .shop-item.disabled:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: transparent;
         }
 
+        /* Header section of shop item (name and count) */
         .item-header {
             display: flex;
             justify-content: space-between;
@@ -230,12 +258,14 @@
             margin-bottom: 8px;
         }
 
+        /* Item name styling */
         .item-name {
             font-size: 18px;
             font-weight: bold;
             color: black;
         }
 
+        /* Item count badge */
         .item-count {
             background: rgba(29, 25, 2, 0.3);
             padding: 3px 10px;
@@ -243,6 +273,7 @@
             font-size: 14px;
         }
 
+        /* Item description text */
         .item-description {
             font-size: 14px;
             opacity: 0.9;
@@ -250,23 +281,27 @@
             color: rgb(77, 6, 6);
         }
 
+        /* Footer section of shop item (cost and effect) */
         .item-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        /* Item cost display */
         .item-cost {
             font-size: 16px;
             color: #756714;
             font-weight: bold;
         }
 
+        /* Item effect display */
         .item-effect {
             font-size: 13px;
             opacity: 1;
         }
 
+        /* Orbiting buddy characters around Karim */
         .buddy {
             position: absolute;
             width: 10px;
@@ -278,6 +313,7 @@
             object-fit: cover;
         }
 
+        /* Orbit animation for buddy characters */
         @keyframes orbit {
             from {
                 transform: rotate(0deg) translateX(180px) rotate(0deg) scale(0.25);
@@ -288,6 +324,7 @@
             }
         }
 
+        /* Random fist picture that spawns periodically */
         .random-picture {
             position: fixed;
             width: 45px;
@@ -297,6 +334,7 @@
             animation: popIn 0.15s ease-out;
         }
 
+        /* Image inside random picture */
         .random-picture img {
             width: 100%;
             height: 100%;
@@ -304,10 +342,12 @@
             pointer-events: none;
         }
 
+        /* Hover effect for random fist */
         .random-picture:hover {
             transform: scale(1.2);
         }
 
+        /* Pop-in animation for random fist */
         @keyframes popIn {
             from {
                 transform: scale(0);
@@ -318,7 +358,7 @@
             }
         }
 
-        /* Timing Meter Overlay */
+        /* Full-screen overlay for timing meter mini-game */
         .meter-overlay {
             position: fixed;
             top: 0;
@@ -334,6 +374,7 @@
             backdrop-filter: blur(5px);
         }
 
+        /* Container for timing meter elements */
         .meter-container {
             background: rgba(30, 30, 50, 0.95);
             padding: 40px;
@@ -345,6 +386,7 @@
             gap: 20px;
         }
 
+        /* Title for timing meter */
         .meter-title {
             font-size: 28px;
             font-weight: bold;
@@ -353,6 +395,7 @@
             margin-bottom: 10px;
         }
 
+        /* Vertical meter bar with color gradient */
         .meter-bar {
             width: 80px;
             height: 400px;
@@ -369,6 +412,7 @@
             border: 3px solid rgba(255, 215, 0, 0.5);
         }
 
+        /* Green target zone at top of meter */
         .green-zone {
             position: absolute;
             width: 100%;
@@ -379,6 +423,7 @@
             box-shadow: 0 0 15px rgba(68, 255, 68, 0.6);
         }
 
+        /* Moving marker on the meter */
         .meter-marker {
             position: absolute;
             width: 100%;
@@ -390,6 +435,7 @@
             transition: none;
         }
 
+        /* Stop button for timing meter */
         .meter-button {
             padding: 15px 40px;
             font-size: 20px;
@@ -403,21 +449,25 @@
             transition: transform 0.1s, box-shadow 0.1s;
         }
 
+        /* Hover effect for meter button */
         .meter-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
         }
 
+        /* Active state for meter button */
         .meter-button:active {
             transform: translateY(0);
         }
 
+        /* Instruction text for timing meter */
         .meter-instruction {
             font-size: 16px;
             color: rgba(255, 255, 255, 0.8);
             text-align: center;
         }
 
+        /* Display for active coin multiplier */
         .multiplier-display {
             position: fixed;
             top: 20px;
@@ -435,10 +485,12 @@
             animation: pulse 1s ease-in-out infinite;
         }
 
+        /* Green variant for good multiplier */
         .multiplier-display.good {
             background: linear-gradient(135deg, #44ff44, #22dd22);
         }
 
+        /* Pulsing animation for multiplier display */
         @keyframes pulse {
 
             0%,
@@ -451,6 +503,7 @@
             }
         }
 
+        /* Flash effect showing result of timing meter */
         .result-flash {
             position: fixed;
             top: 50%;
@@ -465,6 +518,7 @@
             animation: flashResult 0.8s ease-out forwards;
         }
 
+        /* Animation for result flash */
         @keyframes flashResult {
             0% {
                 opacity: 0;
@@ -482,20 +536,24 @@
             }
         }
 
+        /* Custom scrollbar width */
         ::-webkit-scrollbar {
             width: 8px;
         }
 
+        /* Custom scrollbar track */
         ::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
 
+        /* Custom scrollbar thumb */
         ::-webkit-scrollbar-thumb {
             background: rgba(255, 215, 0, 0.5);
             border-radius: 10px;
         }
 
+        /* Custom scrollbar thumb hover */
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(255, 215, 0, 0.7);
         }
@@ -504,8 +562,10 @@
 
 <body>
 
+    <!-- Button to open snake mini-game -->
     <button id="snakeBtn">🐍 Play Snake</button>
 
+    <!-- Snake game overlay (hidden by default) -->
     <div id="snakeOverlay">
         <div id="snakeContainer">
             <button id="closeSnake">✖</button>
@@ -514,19 +574,23 @@
         </div>
     </div>
 
-
+    <!-- Main game container -->
     <div class="game-container">
+        <!-- Left section: Main game area -->
         <div class="main-game">
+            <!-- Stats display -->
             <div class="stats">
                 <div class="coin-count">💰 <span id="coins">0</span></div>
                 <div class="coins-per-click">+<span id="coinsPerClick">1</span> per fist bump</div>
                 <div class="coins-per-second"><span id="coinsPerSecond">0</span> coins/second</div>
             </div>
+            <!-- Clickable Karim character -->
             <div id="karim">
                 <img src="karimfistbumper.png" alt="Karim fist bump">
             </div>
         </div>
 
+        <!-- Right section: Shop -->
         <div class="shop">
             <h2>🛒 Upgrades</h2>
             <div id="shopItems"></div>
@@ -534,24 +598,24 @@
     </div>
 
     <script>
-        // Game state
-        let coins = 0;
-        let coinsPerClick = 1;
-        let coinsPerSecond = 0;
-        let globalMultiplier = 1;
-        let multiplierTimeoutId = null;
-        let meterActive = false;
+        // ===== GAME STATE VARIABLES =====
+        let coins = 0;                      // Total coins earned
+        let coinsPerClick = 1;              // Coins earned per click on Karim
+        let coinsPerSecond = 0;             // Passive income rate
+        let globalMultiplier = 1;           // Current multiplier (2x, 0.5x, or 1x)
+        let multiplierTimeoutId = null;     // Timeout ID for multiplier duration
+        let meterActive = false;            // Whether timing meter mini-game is active
 
-        // Shop items data
+        // ===== SHOP ITEMS DATA =====
         const shopItems = [
             {
                 id: 'autoClicker1',
                 name: 'Nayan Patel',
                 description: 'He loves giving karim fist bumps',
-                baseCost: 10,
-                effect: 0.1,
-                effectType: 'cps',
-                count: 0,
+                baseCost: 10,               // Starting cost
+                effect: 0.1,                // Effect value
+                effectType: 'cps',          // Effect type: coins per second
+                count: 0,                   // Number owned
                 imageSrc: './resources/Nayan-Transparent.png'
             },
             {
@@ -560,7 +624,7 @@
                 description: 'J Cole makes Karim stronger',
                 baseCost: 25,
                 effect: 1,
-                effectType: 'cpc',
+                effectType: 'cpc',          // Effect type: coins per click
                 count: 0,
                 imageSrc: './resources/airpods-transparent.png'
             },
@@ -626,53 +690,61 @@
             }
         ];
 
-        // DOM elements
+        // ===== DOM ELEMENT REFERENCES =====
         const karimElement = document.getElementById('karim');
         const coinsDisplay = document.getElementById('coins');
         const coinsPerClickDisplay = document.getElementById('coinsPerClick');
         const coinsPerSecondDisplay = document.getElementById('coinsPerSecond');
         const shopItemsContainer = document.getElementById('shopItems');
 
-        // Click Karim
+        // ===== KARIM CLICK HANDLER =====
         karimElement.addEventListener('click', (e) => {
+            // Add coins based on click value and multiplier
             coins += coinsPerClick * globalMultiplier;
             updateDisplay();
             renderShop();
 
-            // Create floating text effect
+            // Create floating text effect showing coins gained
             const effect = document.createElement('div');
             effect.className = 'click-effect';
             const actualGain = Math.floor(coinsPerClick * globalMultiplier);
             effect.textContent = `+${actualGain}`;
+            // Position at click location relative to Karim
             effect.style.left = (e.clientX - karimElement.getBoundingClientRect().left) + 'px';
             effect.style.top = (e.clientY - karimElement.getBoundingClientRect().top) + 'px';
             karimElement.appendChild(effect);
 
+            // Remove floating text after animation completes
             setTimeout(() => effect.remove(), 1000);
         });
 
-        // Calculate cost with scaling
+        // ===== SHOP FUNCTIONS =====
+        
+        // Calculate cost of an item with exponential scaling
         function getItemCost(item) {
             return Math.floor(item.baseCost * Math.pow(1.15, item.count));
         }
 
-        // Buy item
+        // Purchase an item from the shop
         function buyItem(item) {
             const cost = getItemCost(item);
             if (coins >= cost) {
-                coins -= cost;
-                item.count++;
+                coins -= cost;              // Deduct cost
+                item.count++;               // Increment count
 
+                // Apply item effect based on type
                 if (item.effectType === 'cpc') {
                     coinsPerClick += item.effect;
                 } else if (item.effectType === 'cps') {
                     coinsPerSecond += item.effect;
                 }
 
+                // Add orbiting buddy for Nayan Patel
                 if (item.id === 'autoClicker1' && item.imageSrc) {
                     addBuddy(item.imageSrc, item.count);
                 }
 
+                // Update Karim's appearance for airpods or beanie
                 if (item.id === 'airpods' || item.id === 'beanie') {
                     updateKarimImage();
                 }
@@ -682,42 +754,45 @@
             }
         }
 
-        // Snake minigame
+        // ===== SNAKE MINI-GAME =====
         const snakeBtn = document.getElementById('snakeBtn');
-            const snakeOverlay = document.getElementById('snakeOverlay');
-            const closeSnake = document.getElementById('closeSnake');
+        const snakeOverlay = document.getElementById('snakeOverlay');
+        const closeSnake = document.getElementById('closeSnake');
 
-            let snakeRunning = false;
+        let snakeRunning = false;
 
-            snakeBtn.addEventListener('click', () => {
-                snakeOverlay.style.display = 'flex';
-                snakeRunning = true;
-            });
+        // Open snake game overlay
+        snakeBtn.addEventListener('click', () => {
+            snakeOverlay.style.display = 'flex';
+            snakeRunning = true;
+        });
 
-            closeSnake.addEventListener('click', () => {
-                snakeOverlay.style.display = 'none';
-                snakeRunning = false;
-            });
+        // Close snake game overlay
+        closeSnake.addEventListener('click', () => {
+            snakeOverlay.style.display = 'none';
+            snakeRunning = false;
+        });
 
-
-        // Buddy orbit
+        // ===== BUDDY ORBIT FUNCTION =====
+        // Add an orbiting character around Karim
         function addBuddy(imageSrc, count) {
             const buddy = document.createElement('img');
             buddy.src = imageSrc;
             buddy.className = 'buddy';
 
+            // Stagger animation delay based on count
             const delay = (count - 1) * 0.5
             buddy.style.animationDelay = `-${delay}s`;
 
             karimElement.appendChild(buddy);
         }
 
-        // Timing meter mini-game
+        // ===== TIMING METER MINI-GAME =====
         function startTimingMeter() {
-            if (meterActive) return;
+            if (meterActive) return;        // Prevent multiple instances
             meterActive = true;
 
-            // Create overlay
+            // Create overlay DOM element
             const overlay = document.createElement('div');
             overlay.className = 'meter-overlay';
             overlay.id = 'meterOverlay';
@@ -740,11 +815,11 @@
             const stopButton = document.getElementById('stopButton');
 
             let startTime = Date.now();
-            const duration = 1200; // 1.2 seconds
+            const duration = 1200;          // 1.2 seconds for full travel
             let animationId;
             let stopped = false;
 
-            // Animate marker
+            // Animate marker moving up the bar
             function animateMarker() {
                 if (stopped) return;
 
@@ -758,14 +833,14 @@
                 if (progress < 1) {
                     animationId = requestAnimationFrame(animateMarker);
                 } else {
-                    // Auto-stop at top - player didn't click, apply 0.5x reduction
+                    // Auto-stop at top - player didn't click, apply penalty
                     applyMultiplier(false);
                     overlay.remove();
                     meterActive = false;
                 }
             }
 
-            // Stop meter function
+            // Stop meter and check result
             function stopMeter(isSuccess) {
                 if (stopped) return;
                 stopped = true;
@@ -774,24 +849,24 @@
                 const markerPosition = parseFloat(marker.style.bottom) || 0;
                 const isGreen = markerPosition >= 85; // Green zone is top 15%
 
-                // Remove overlay
+                // Remove overlay after brief delay
                 setTimeout(() => {
                     overlay.remove();
                     meterActive = false;
                 }, 100);
 
-                // Apply result
+                // Apply multiplier based on result
                 applyMultiplier(isGreen);
             }
 
-            // Check position when stopped
+            // Handle stop button click
             function handleStop() {
                 const markerPosition = parseFloat(marker.style.bottom) || 0;
                 const isGreen = markerPosition >= 85;
                 stopMeter(isGreen);
             }
 
-            // Event listeners
+            // Event listeners for stop button and spacebar
             stopButton.addEventListener('click', handleStop);
 
             const spaceHandler = (e) => {
@@ -807,18 +882,19 @@
             animateMarker();
         }
 
+        // Apply multiplier based on timing meter result
         function applyMultiplier(isSuccess) {
-            // Clear existing multiplier timer
+            // Clear existing multiplier timer if present
             if (multiplierTimeoutId) {
                 clearTimeout(multiplierTimeoutId);
                 const oldDisplay = document.getElementById('multiplierDisplay');
                 if (oldDisplay) oldDisplay.remove();
             }
 
-            // Set new multiplier
+            // Set new multiplier: 2x for success, 0.5x for failure
             globalMultiplier = isSuccess ? 2 : 0.5;
 
-            // Show result flash
+            // Show result flash message
             const flash = document.createElement('div');
             flash.className = 'result-flash';
             flash.textContent = isSuccess ? 'PERFECT! 2x COINS' : 'MISS! 0.5x COINS';
@@ -826,14 +902,15 @@
             document.body.appendChild(flash);
             setTimeout(() => flash.remove(), 800);
 
-            // Create multiplier display
+            // Create persistent multiplier display
             const display = document.createElement('div');
             display.id = 'multiplierDisplay';
             display.className = `multiplier-display ${isSuccess ? 'good' : ''}`;
             document.body.appendChild(display);
 
-            let timeLeft = 15;
+            let timeLeft = 15;              // Multiplier lasts 15 seconds
 
+            // Update display every second
             function updateDisplay() {
                 if (!display.parentElement) return;
                 const emoji = globalMultiplier > 1 ? '🔥' : '❄️';
@@ -841,6 +918,7 @@
 
                 timeLeft--;
                 if (timeLeft < 0) {
+                    // Multiplier expired, reset to normal
                     globalMultiplier = 1;
                     display.remove();
                     multiplierTimeoutId = null;
@@ -852,21 +930,24 @@
             updateDisplay();
         }
 
-        //Spawn a random fist
+        // ===== RANDOM FIST SPAWNING =====
+        
+        // Spawn a clickable fist icon at random location
         function spawnRandomPicture() {
             const pic = document.createElement('img');
             pic.className = 'random-picture';
 
-            // Image you want to use
-            pic.src = './resources/Punch-Green.png'; // change to any image
+            // Fist image
+            pic.src = './resources/Punch-Green.png';
 
-            // Left side only
+            // Random position on left 25% of screen
             const x = Math.random() * (window.innerWidth * 0.25);
             const y = Math.random() * (window.innerHeight - 100);
 
             pic.style.left = `${x}px`;
             pic.style.top = `${y}px`;
 
+            // Clicking fist triggers timing meter mini-game
             pic.addEventListener('click', () => {
                 startTimingMeter();
             });
@@ -874,18 +955,20 @@
             document.body.appendChild(pic);
         }
 
-        //THIS WILL DO RANDOM BETWEEN 30-60 seconds
-            function scheduleRandomPicture() {
-                const delay = Math.random() * (60000 - 30000) + 30000; // 30–60 seconds
-                setTimeout(() => {
-                    spawnRandomPicture();
-                    scheduleRandomPicture(); // keep it going
-                }, delay);
-            }
+        // Schedule random fist spawning every 30-60 seconds
+        function scheduleRandomPicture() {
+            const delay = Math.random() * (60000 - 30000) + 30000; // 30–60 seconds
+            setTimeout(() => {
+                spawnRandomPicture();
+                scheduleRandomPicture(); // Recursively schedule next spawn
+            }, delay);
+        }
 
-            scheduleRandomPicture();
+        // Start the spawning cycle
+        scheduleRandomPicture();
 
-
+        // ===== KARIM IMAGE UPDATE =====
+        
         // Update Karim's appearance based on owned items
         function updateKarimImage() {
             const hasAirpods = shopItems.find(item => item.id === 'airpods').count > 0;
@@ -893,6 +976,7 @@
 
             const karimImg = karimElement.querySelector('img');
 
+            // Change image based on owned accessories
             if (hasAirpods && hasBeanie) {
                 karimImg.src = './resources/Karim-Beanie-Airpods.png'; // Both accessories
             } else if (hasAirpods) {
@@ -904,13 +988,16 @@
             }
         }
 
-        // Render shop
+        // ===== SHOP RENDERING =====
+        
+        // Render all shop items
         function renderShop() {
             shopItemsContainer.innerHTML = '';
             shopItems.forEach(item => {
                 const cost = getItemCost(item);
                 const canAfford = coins >= cost;
 
+                // Create shop item card
                 const itemDiv = document.createElement('div');
                 itemDiv.className = `shop-item ${!canAfford ? 'disabled' : ''}`;
                 itemDiv.innerHTML = `
@@ -927,6 +1014,7 @@
                     </div>
                 `;
 
+                // Add click handler if affordable
                 if (canAfford) {
                     itemDiv.addEventListener('click', () => buyItem(item));
                 }
@@ -935,16 +1023,18 @@
             });
         }
 
-        // Update display
+        // ===== DISPLAY UPDATE =====
+        
+        // Update all displayed stats
         function updateDisplay() {
             coinsDisplay.textContent = Math.floor(coins);
             coinsPerClickDisplay.textContent = coinsPerClick;
             coinsPerSecondDisplay.textContent = coinsPerSecond.toFixed(1);
-
-            // renderShop();
         }
 
-        // Passive income
+        // ===== PASSIVE INCOME =====
+        
+        // Generate passive income every 100ms
         setInterval(() => {
             if (coinsPerSecond > 0) {
                 coins += (coinsPerSecond / 10) * globalMultiplier;
@@ -952,115 +1042,133 @@
             }
         }, 100);
 
-        // Update shop periodically
-        // setInterval(() => {
-        //     renderShop();
-        // }, 100);
-
+        // ===== INITIALIZATION =====
+        
         // Initial render
         renderShop();
         updateDisplay();
 
-        // Snake minigame JS
+        // ===== SNAKE GAME LOGIC =====
+        
         const canvas = document.getElementById('snakeGame');
-            const context = canvas.getContext('2d');
+        const context = canvas.getContext('2d');
 
-            const grid = 16;
-            let count = 0;
+        const grid = 16;                    // Size of each grid cell
+        let count = 0;                      // Frame counter for game speed
 
-            const snake = {
-                x: 160,
-                y: 160,
-                dx: grid,
-                dy: 0,
-                cells: [],
-                maxCells: 4
-            };
+        // Snake object
+        const snake = {
+            x: 160,                         // Starting x position
+            y: 160,                         // Starting y position
+            dx: grid,                       // Movement in x direction
+            dy: 0,                          // Movement in y direction
+            cells: [],                      // Snake body segments
+            maxCells: 4                     // Initial snake length
+        };
 
-            const apple = {
-                x: 320,
-                y: 320
-            };
+        // Apple (food) object
+        const apple = {
+            x: 320,
+            y: 320
+        };
 
-            function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
+        // Random integer generator
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        // Main snake game loop
+        function snakeLoop() {
+            requestAnimationFrame(snakeLoop);
+
+            if (!snakeRunning) return;      // Don't update if game not active
+
+            // Game speed control (update every 4 frames)
+            if (++count < 4) return;
+            count = 0;
+
+            // Clear canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Move snake
+            snake.x += snake.dx;
+            snake.y += snake.dy;
+
+            // Wrap snake around edges
+            if (snake.x < 0) snake.x = canvas.width - grid;
+            if (snake.x >= canvas.width) snake.x = 0;
+            if (snake.y < 0) snake.y = canvas.height - grid;
+            if (snake.y >= canvas.height) snake.y = 0;
+
+            // Add new head position to front of cells array
+            snake.cells.unshift({ x: snake.x, y: snake.y });
+            
+            // Remove tail if snake exceeds max length
+            if (snake.cells.length > snake.maxCells) {
+                snake.cells.pop();
             }
 
-            function snakeLoop() {
-                requestAnimationFrame(snakeLoop);
+            // Draw apple
+            context.fillStyle = 'red';
+            context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
 
-                if (!snakeRunning) return;
+            // Draw snake and check collisions
+            context.fillStyle = 'lime';
+            snake.cells.forEach((cell, index) => {
+                context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
 
-                if (++count < 4) return;
-                count = 0;
+                // Check if snake ate apple
+                if (cell.x === apple.x && cell.y === apple.y) {
+                    snake.maxCells++;       // Grow snake
 
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                    // Reward player with coins
+                    coins += 25;
+                    updateDisplay();
 
-                snake.x += snake.dx;
-                snake.y += snake.dy;
-
-                if (snake.x < 0) snake.x = canvas.width - grid;
-                if (snake.x >= canvas.width) snake.x = 0;
-                if (snake.y < 0) snake.y = canvas.height - grid;
-                if (snake.y >= canvas.height) snake.y = 0;
-
-                snake.cells.unshift({ x: snake.x, y: snake.y });
-                if (snake.cells.length > snake.maxCells) {
-                    snake.cells.pop();
+                    // Spawn new apple at random position
+                    apple.x = getRandomInt(0, 25) * grid;
+                    apple.y = getRandomInt(0, 25) * grid;
                 }
 
-                context.fillStyle = 'red';
-                context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-
-                context.fillStyle = 'lime';
-                snake.cells.forEach((cell, index) => {
-                    context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-                    if (cell.x === apple.x && cell.y === apple.y) {
-                        snake.maxCells++;
-
-                        // 🍎 reward coins
-                        coins += 25;
-                        updateDisplay();
-
-                        apple.x = getRandomInt(0, 25) * grid;
-                        apple.y = getRandomInt(0, 25) * grid;
+                // Check collision with self
+                for (let i = index + 1; i < snake.cells.length; i++) {
+                    if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+                        // Reset snake on collision
+                        snake.x = 160;
+                        snake.y = 160;
+                        snake.cells = [];
+                        snake.maxCells = 4;
+                        snake.dx = grid;
+                        snake.dy = 0;
                     }
-
-                    for (let i = index + 1; i < snake.cells.length; i++) {
-                        if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                            snake.x = 160;
-                            snake.y = 160;
-                            snake.cells = [];
-                            snake.maxCells = 4;
-                            snake.dx = grid;
-                            snake.dy = 0;
-                        }
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', e => {
-                if (!snakeRunning) return;
-
-                if (e.key === 'ArrowLeft' && snake.dx === 0) {
-                    snake.dx = -grid; snake.dy = 0;
-                } else if (e.key === 'ArrowUp' && snake.dy === 0) {
-                    snake.dy = -grid; snake.dx = 0;
-                } else if (e.key === 'ArrowRight' && snake.dx === 0) {
-                    snake.dx = grid; snake.dy = 0;
-                } else if (e.key === 'ArrowDown' && snake.dy === 0) {
-                    snake.dy = grid; snake.dx = 0;
                 }
             });
+        }
 
-            requestAnimationFrame(snakeLoop);
+        // Snake controls via arrow keys
+        document.addEventListener('keydown', e => {
+            if (!snakeRunning) return;
+
+            // Prevent snake from reversing direction
+            if (e.key === 'ArrowLeft' && snake.dx === 0) {
+                snake.dx = -grid; 
+                snake.dy = 0;
+            } else if (e.key === 'ArrowUp' && snake.dy === 0) {
+                snake.dy = -grid; 
+                snake.dx = 0;
+            } else if (e.key === 'ArrowRight' && snake.dx === 0) {
+                snake.dx = grid; 
+                snake.dy = 0;
+            } else if (e.key === 'ArrowDown' && snake.dy === 0) {
+                snake.dy = grid; 
+                snake.dx = 0;
+            }
+        });
+
+        // Start snake game loop
+        requestAnimationFrame(snakeLoop);
 
     </script>
 </body>
 
 </html>
-
-
-
-
