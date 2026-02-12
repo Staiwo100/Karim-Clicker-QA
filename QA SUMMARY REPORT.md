@@ -13,18 +13,18 @@ performance
 
  * Fist bump powerup does not disappear after attempting to green the fist bump. This happens whether you fail to green the fist bump or no
 
-###
+### 2
 
 * Power up only works when you press the space bar but not the stop button
 
-###
+### 3
 
 * Game crashes/slows down when too many Nayan's are bought (This depends on device and its power, but tends to happen at around 500 - 1000 Nayan's when bought)
 
-###
+### 4
 
 * UI breaks whenever too many Nayan's are bought (Similar with the bug above)
 
-###
+### 5
 
 * Nayan's cover up coins/second (Visual Error)
