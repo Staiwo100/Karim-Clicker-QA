@@ -1,295 +1,283 @@
-QA Summary Report 
+Here is your QA report properly formatted for a **Markdown (.md) file**:
 
-Game Tested: [Karim Fist bump] 
+---
 
-Dev Team: [Lucas, Jack, Parth, Biruk] 
+# QA Summary Report
 
-QA Team: [Karan Modi, Maxwell Noffsinger, Sam Taiwo, Jessica Kamienski] 
+## Game Tested
 
-Testing Period: Week 6 (Tue–Fri) 
+**Karim Fist Bump**
 
-Report Date:  2/13/2026 
+## Dev Team
 
-Executive Summary 
+* Lucas
+* Jack
+* Parth
+* Biruk
 
-We conducted comprehensive QA testing on [Karim Fist Bump] for over 4 days. Our team tested [every core feature], ran [happy and sad test scenarios], and filed [3 GitHub Issues] documenting bugs across all severity levels. 
+## QA Team
 
-Key Finding: [The core game loop works, but UI and visuals need some bug fixes. 
+* Karan Modi
+* Maxwell Noffsinger
+* Sam Taiwo
+* Jessica Kamienski
 
-Testing Overview 
+**Testing Period:** Week 6 (Tue–Fri)
+**Report Date:** 2/13/2026
 
-What We Tested 
+---
 
-Normal Gameplay ✓ 
+# Executive Summary
 
-Snake Gameplay ✓ 
+We conducted comprehensive QA testing on **Karim Fist Bump** over 4 days. Our team tested every core feature, ran happy and sad test scenarios, and filed **5 GitHub Issues** documenting bugs across all severity levels.
 
-Extreme edge cases ✓ 
+### Key Finding
 
-GUI and visuals ✓ 
+The core game loop works, but UI and visuals need bug fixes.
 
-Sequences of events (fist bump event) ✓ 
+---
 
- 
+# Testing Overview
 
-Coverage Summary 
+## What We Tested
 
-Features Tested: [List core features and % coverage] 
+* ✅ Normal Gameplay
+* ✅ Snake Gameplay
+* ✅ Extreme Edge Cases
+* ✅ GUI and Visuals
+* ✅ Sequences of Events (Fist Bump Event)
 
-Clicking Feature: 100% tested 
+---
 
-Snake Feature: 100% tested 
+## Coverage Summary
 
-Shop Feature: 100% tested 
+### Features Tested
 
-Fist bump powerup Feature 100% tested 
+| Feature                    | Coverage |
+| -------------------------- | -------- |
+| Clicking Feature           | 100%     |
+| Snake Feature              | 100%     |
+| Shop Feature               | 100%     |
+| Fist Bump Power-Up Feature | 100%     |
 
-Test Types: [Types of testing we did] 
+---
 
-Functional testing (Program works as intended) 
+## Test Types
 
-Negative testing (If there are too many assets on screen, the game will break. For example, if there are too many Nayan's) 
+* **Functional Testing** – Program works as intended
+* **Negative Testing** – Tested failure scenarios (e.g., too many Nayans causing crashes)
+* **Exploratory Testing** – Creative scenarios (e.g., reaching infinity and “beating” the game)
 
-Exploratory testing (We did test creative scenarios. For example, you can reach infinity and “beat” the game. 
+---
 
-Bug Summary 
+# Bug Summary
 
-By Severity 
+## By Severity
 
-Critical: 1 bug (game-breaking) 
+| Severity  | Count |
+| --------- | ----- |
+| Critical  | 1     |
+| High      | 0     |
+| Medium    | 2     |
+| Low       | 2     |
+| **Total** | **5** |
 
-High: 0 bugs (core features broken) 
+---
 
-Medium: 2 bugs (partial functionality issues) 
+## By Category
 
-Low: 2 bugs (cosmetic or minor edge cases) 
+| Category         | Count |
+| ---------------- | ----- |
+| Input Validation | 1     |
+| Logic Errors     | 1     |
+| State Management | 0     |
+| UI/UX Issues     | 3     |
+| Other            | 0     |
 
-Total Bugs Filed: 5 
+---
 
-By Category 
+# Critical Issues (Must Fix Before Handoff)
 
-Input Validation: 1 bug 
+These bugs break core gameplay or make the game unplayable.
 
-Logic Errors: 1 bug 
+| # | Title                             | Severity | GitHub Link                                                                                                      |
+| - | --------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1 | Game crashes with too many Nayans | Critical | [https://github.com/Staiwo100/Karim-Clicker-QA/issues/5](https://github.com/Staiwo100/Karim-Clicker-QA/issues/5) |
 
-State Management: 0 bugs 
+---
 
-UI/UX Issues: 3 bugs 
+# High-Priority Issues (Fix ASAP)
 
-Other: 0 bugs 
+No high-priority bugs were recorded.
 
-Critical Issues (Must Fix Before Handoff) 
+---
 
-These bugs prevent the game from being playable or break core mechanics. 
+# Medium & Low Priority Issues
 
-# 
+| # | Title                                              | Severity | GitHub Link                                                                                                      |
+| - | -------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1 | Fist bumps do not disappear after use              | Medium   | [https://github.com/Staiwo100/Karim-Clicker-QA/issues/2](https://github.com/Staiwo100/Karim-Clicker-QA/issues/2) |
+| 2 | Unable to buy upgrades when player can afford them | Low      | [https://github.com/Staiwo100/Karim-Clicker-QA/issues/1](https://github.com/Staiwo100/Karim-Clicker-QA/issues/1) |
+| 3 | Player can reach Infinity                          | Medium   | [https://github.com/Staiwo100/Karim-Clicker-QA/issues/4](https://github.com/Staiwo100/Karim-Clicker-QA/issues/4) |
+| 4 | Nayan Patel covers up UI                           | Low      | [https://github.com/Staiwo100/Karim-Clicker-QA/issues/3](https://github.com/Staiwo100/Karim-Clicker-QA/issues/3) |
 
-Title  
+---
 
-Severity 
+# Testing Insights
 
-GitHub Issue Link 
+## What Worked Well
 
-1 
+* Code quality was up to standard and easy to interpret
+* Documentation and commenting made functions easier to understand
+* Core clicking mechanic performed as expected without UI bugs
 
-Game Crashes with too many nayans 
+---
 
-Unable to buy upgrades even when the player can afford them 
+## Areas for Improvement
 
-Paragraph locked by Samuel Taiwo
-Critical 
+* UI design and formatting
+* Number logic errors
+* Snake game needs clearer explanation
 
-https://github.com/Staiwo100/Karim-Clicker-QA/issues/5 
+---
 
- 
+## Patterns Noticed
 
- 
+* Several UI/UX issues
+* Asset overload (too many Nayans) causes performance issues
+* High object counts lead to crashes and UI instability
 
- 
+---
 
- 
+# Recommendations for Dev Team
 
- 
+## 🔴 Priority 1 – Critical Fixes
 
- 
+* **Fist Bump Power-Up Bug**
 
- 
+  * Power-ups do not disappear
+  * Can be reused indefinitely
+  * Causes screen clutter
 
- 
+* **Upgrade Purchase Bug**
 
-High-Priority Issues (Fix ASAP) 
+  * Players cannot buy upgrades when money is earned passively
+  * Blocks a key progression mechanic
 
-These bugs affect core features but don't prevent gameplay. 
+* **Too Many Nayans Crash**
 
-No High-Priority bugs were recorded 
+  * Excessive Nayan count crashes UI
+  * Makes game unplayable
 
-Medium & Low Priority Issues 
+---
 
-Documented in GitHub Issues. These can be deferred or fixed in sequence. 
+## 🟠 Priority 2 – Important Fixes
 
-# 
+* **Nayan UI Overlap**
 
-Title  
+  * Nayans cover important UI elements
+  * May contribute to crash behavior
 
-Severity 
+---
 
-GitHub Issue Link 
+## 🟢 Priority 3 – Optional / Polish
 
-1 
+* Prevent player from reaching Infinity
+* Clarify Snake game reward logic
 
-Fists bumps do not disappear after using them 
+---
 
- 
+# Test Environment
 
-Medium 
+* **Platform:** Browser / VSCode Live Server
+* **Game Version:** `4152206139581a955705d9014883dd7fc0300f76`
+* **Testing Tools:**
 
-https://github.com/Staiwo100/Karim-Clicker-QA/issues/2 
+  * Manual Testing
+  * GitHub Issues
+  * VSCode
 
- 
+---
 
-2 
+# GitHub Issues Summary
 
-Unable to buy upgrades even when the player can afford them 
+* **Total Issues:** 5
+* **Closed:** 0
+* **Open:** 5
+* Tag: `qa-week6`
 
- 
+See Dev Team repository for full issue list.
 
-Low 
+---
 
-https://github.com/Staiwo100/Karim-Clicker-QA/issues/1 
+# Conclusion
 
- 
+The game has **5 documented issues** ranging from critical to cosmetic.
 
-3 
+With focused effort on critical bugs, the core gameplay loop remains playable.
+Primary areas needing attention:
 
-Player can reach Infinity 
+* Input validation
+* UI/UX stability
+* Asset overload handling
 
-Player can reach Infinity 
+---
 
-Paragraph locked by Samuel Taiwo
-Medium 
+# QA Team Sign-Off
 
-https://github.com/Staiwo100/Karim-Clicker-QA/issues/4 
+**Test Lead:** Maxwell Noffsinger
+**Submitted:** 2/13/2026
 
- 
+### Team Members
 
-4 
+* Samuel Taiwo
+* Karan Modi
+* Maxwell Noffsinger
+* Jessica Kamienski
 
-Nayan Patel's cover up UI 
+---
 
- 
+# Appendix: Detailed Test Scenarios
 
-Low 
+## Scenario 1 – Happy Path
 
-https://github.com/Staiwo100/Karim-Clicker-QA/issues/3 
+**Result:** Passed
 
- 
+**Notes:**
+There is no limit to the number of power-ups you can buy, and there are no levels. The player continues clicking and completing tasks/mini-games indefinitely.
 
- 
+---
 
-Testing Insights 
+## Scenario 2 – Input Validation
 
-What Worked Well 
+**Result:** Partial
 
-Code Quality was up to standards and easy for tester interpretation 
+**Notes:**
+Most inputs work. However, if the player gains only passive income (without clicking), they are unable to purchase upgrades.
 
-Documentation and commenting made functions easier to understand 
+---
 
-Core concept of clicking performed as expected with no UI bugs when clicking on it 
+## Scenario 3 – Edge Cases
 
-Areas for Improvement 
+**Result:** Partial
 
-UI design and formatting  
+**Notes:**
 
-Numbers have logic errors 
+* High integer values convert to “Infinity”
+* Around 500–1000 Nayans (depending on PC performance) causes:
 
-Snake game needs more explanation 
+  * Major slowdown
+  * UI disappearing
+  * Eventual crash
 
-Patterns Noticed 
+---
 
-Several UI/UX issues, many of which are simply but others leading to the game crashing and slowing down 
+# Questions for Dev Team
 
-Recommendations for Dev Team 
+1. Is the Snake game intended to reward money?
+2. Is cutting through walls intended behavior?
+3. Should the 2x multiplier apply to Snake game rewards?
 
-Critical Fixes (Priority 1) 
+---
 
-The Fist bump powerup bug — The bug not only causes fist bumps to gather on the screen, but it also makes it so the powerup can be used at any time. 
-
-Players not being able to buy upgrades when they can afford them — This bug prevents people from buying upgrades when they make the money from a passive source. This effects a key feature of the game 
-
-Game crashes with too many nayans — If you reach a certain point in the game it can cause the UI to crash, making the game unplayable 
-
-Important Fixes (Priority 2) 
-
-Nayan Patel’s covering up UI — The nayans are too big and can cover up certain parts of the screen. This could also be why the game crashes after so many nayans. 
-
-Polish/Optional Fixes (Priority 3) 
-
-Player reaching infinity 
-
-Test Environment 
-
-Platform: Browser / VSCODE live server 
-
-Game Version: 4152206139581a955705d9014883dd7fc0300f76 
-
-Testing Tools: Manual testing + GitHub Issues + VSCODE 
-
-All GitHub Issues 
-
-Complete list of filed bugs: See dev team repo for all open GitHub Issues tagged qa-week6 
-
-Total: 5 issues 
-
-Closed: 0 
-
-Open: 5 (for dev team to fix in Week 7) 
-
-Conclusion 
-
-The game has 5 documented issues ranging from critical to cosmetics. With focused effort on critical bugs, the core gameplay loop is playable. Input validation and UI/UX issues are the areas needing the most attention. 
-
-QA Team Sign-Off 
-
-Test Lead: Maxwell Noffsinger 
-
-Submitted: 2/13/26 
-
-Team Members: 
-
-[Samuel Taiwo] 
-
-[Karan Modi] 
-
-[Maxwell Noffsinger] 
-
-[Jessica Kamienski] 
-
-Appendix: Detailed Test Scenarios 
-
-Scenario 1: Happy Path 
-
-Result: Passed 
-
-Notes:  There is no limit to the number of power-ups you can buy, and there are no levels to get through. You just keep clicking and completing the tasks and mini games until you get bored 
-
-Scenario 2: Input Validation 
-
-Result: Partial 
-
-Notes: Most inputs work, but if you don’t click and gain passive income, you are unable to buy upgrades, which is a weird bug. 
-
-Scenario 3: Edge Cases 
-
-Result: Partial 
-
-Notes: Edge cases were tested for integer limits and Nayan’s. Whenever you reach a certain high enough number, the value changes to “infinity”. Whenever the user reaches around 500-1000 Nayan’s (depending on users’ PC), the game begins to crash and slow down. UI begins to bug out and disappears for long periods of time. 
-
-Questions for Dev Team (If Applicable) 
-
-If there were ambiguities in how the game should work, note them here so dev team can clarify in Week 7: 
-
-Is the Snake game supposed to give you money? Also is it intended for you to be able to cut corners and go across the snake map by going through the walls. Also, the 2x multiplier doesn’t work on the snake game winning money. 
-
-End of Report 
-
- 
+**End of Report**
